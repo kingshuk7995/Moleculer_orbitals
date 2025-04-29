@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 
 enum class Direction {
     Up, Down, Left, Right,
@@ -88,6 +89,28 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 }
 
 int main() {
+    std::cout << "choose option : \n"
+    << "visualizations options : \n"
+    << "    1. 1s-1s interaction\n"
+    << "    2. 2s-2s interaction\n"
+    << "    3. 2p-2p interaction\n"
+    << std::endl;
+    int choice = -1;
+    std::cin >> choice;
+    const std::string frag_shader_path = [choice]() {
+        switch (choice) {
+        case 1:
+            return "shaders/frag_1s_1s.glsl";
+        case 2:
+            return "shaders/frag_2s_2s.glsl";
+        case 3:
+            return "shaders/frag_2p_2p.glsl";
+        default:
+            std::cout << "invalid option\n"
+                    << "choosing 1s-1s as default\n";
+            return "shaders/frag_1s_1s.glsl";
+        }
+    }();
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -109,7 +132,7 @@ int main() {
     glViewport(0, 0, 800, 600);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
-    Shader shaderProgram("shaders/vertex.glsl", "shaders/fragment.glsl");
+    Shader shaderProgram("shaders/vertex.glsl", frag_shader_path.c_str());
 
     float vertices[] = {
         -1.f,  1.f, 0.0f,  // Top-left
