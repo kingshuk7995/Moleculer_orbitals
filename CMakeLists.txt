@@ -1,5 +1,5 @@
 ﻿cmake_minimum_required(VERSION 3.10)
-project(OpenGL_GLSL_Triangle)
+project(Moleculer_orbitals)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -17,7 +17,8 @@ set(SOURCES
     src/main.cpp
     src/shader.h
     third_party/glad/src/glad.c
- "src/shader.cpp")
+    src/shader.cpp
+)
 
 set(RESOURCE_DIRS shaders)
 foreach(dir IN LISTS RESOURCE_DIRS)
@@ -25,7 +26,7 @@ foreach(dir IN LISTS RESOURCE_DIRS)
 endforeach()
 
 
-add_executable(OpenGL_GLSL_Triangle ${SOURCES})
+add_executable(Moleculer_orbitals ${SOURCES})
 
 # Link libraries
-target_link_libraries(OpenGL_GLSL_Triangle glfw opengl32)
+target_link_libraries(Moleculer_orbitals glfw opengl32)
