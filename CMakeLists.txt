@@ -16,8 +16,20 @@ include_directories(
 set(SOURCES
     src/main.cpp
     src/shader.h
-    third_party/glad/src/glad.c
     src/shader.cpp
+    src/renderer.h
+    src/renderer.cpp
+    src/atom.h
+    src/atom.cpp
+    src/index_buffer.h
+    src/index_buffer.cpp
+    src/vertex_buffer.h
+    src/vertex_buffer.cpp
+    src/vertex_array.h
+    src/vertex_array.cpp
+    src/windowing.h
+    src/windowing.cpp
+    third_party/glad/src/glad.c
 )
 
 set(RESOURCE_DIRS shaders)
