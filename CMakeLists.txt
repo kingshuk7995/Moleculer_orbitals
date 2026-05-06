@@ -1,14 +1,18 @@
-﻿cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.10)
 project(Moleculer_orbitals)
 
 set(CMAKE_CXX_STANDARD 17)
 
+set(OpenGL_GL_PREFERENCE GLVND)
+find_package(OpenGL REQUIRED)
 # Include GLFW and GLAD
 add_subdirectory(third_party/glfw)
 
 include_directories(
     third_party/glad/include
     third_party/glfw/include
+    third_party/imgui
+    third_party/imgui/backends
     src
 )
 
@@ -30,6 +34,13 @@ set(SOURCES
     src/windowing.h
     src/windowing.cpp
     third_party/glad/src/glad.c
+    third_party/imgui/imgui.cpp
+    third_party/imgui/imgui_demo.cpp
+    third_party/imgui/imgui_draw.cpp
+    third_party/imgui/imgui_tables.cpp
+    third_party/imgui/imgui_widgets.cpp
+    third_party/imgui/backends/imgui_impl_glfw.cpp
+    third_party/imgui/backends/imgui_impl_opengl3.cpp
 )
 
 set(RESOURCE_DIRS shaders)
@@ -41,4 +52,4 @@ endforeach()
 add_executable(Moleculer_orbitals ${SOURCES})
 
 # Link libraries
-target_link_libraries(Moleculer_orbitals glfw opengl32)
+target_link_libraries(Moleculer_orbitals glfw OpenGL::GL)
